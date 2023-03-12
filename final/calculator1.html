@@ -1,0 +1,218 @@
+<!-- this is the main container -->
+<div id="timevaluecalc">
+  <div class="container">
+    <!-- this is the heading -->
+    <h2>Estimate Your Time's Value</h2>
+
+    <p style="text-align: center">
+      <span
+        >Use decimals for portions of an hour.<br />
+        (example: 15 minutes = 0.25 hours)</span
+      ><br />
+    </p>
+
+    <!-- this part used to show the warning -->
+    <div id="warning-bar" class="warning-bar hidden">
+      <span class="message"></span>
+      <button id="warning-close" class="close-button">&times;</button>
+    </div>
+
+    <!-- this is the form -->
+    <form id="calculator">
+      <label for="income"
+        >Total annual income: <br />
+        <span>Before taxes.</span></label
+      >
+      <input
+        type="number"
+        id="income"
+        name="income"
+        required
+        placeholder="$###"
+      /><br /><br />
+
+      <label for="workhours"
+        >Average total work hours PER WEEK: <br />
+        <span>Include commute time.</span></label
+      >
+      <input
+        type="number"
+        id="workhours"
+        name="workhours"
+        required
+      /><br /><br />
+
+      <label for="sleephours"
+        >Average sleep hours PER NIGHT: <br />
+        <span>Include time spent in bed or sleeping.</span></label
+      >
+      <input
+        type="number"
+        id="sleephours"
+        name="sleephours"
+        required
+      /><br /><br />
+      <!-- ip address -->
+      <input type="text" name="IP address" id="userIP" style="display: none" />
+
+      <button type="submit" onclick="calculate(event)" id="submitform">
+        Calculate
+      </button>
+      <button type="button" onclick="clearForm()" id="resetbtn">Clear</button
+      ><br /><br />
+    </form>
+
+    <!-- result shows here -->
+    <div class="result-container">
+      <div class="heading">
+        <h2>Result</h2>
+      </div>
+
+      <div class="results">
+        <div class="result-box">
+          <h2>Personal Time</h2>
+          <span class="result-value"
+            >$<span id="personaltime">0</span>/Hour</span
+          >
+        </div>
+
+        <div class="result-box">
+          <h2>Work Time</h2>
+          <span class="result-value">$<span id="worktime">0</span>/Hour</span>
+        </div>
+
+        <div class="result-box">
+          <h2>Hours of Personal Time Each Week</h2>
+          <span class="result-value"
+            ><span id="personalhours">0</span> Hours</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Add event listener to close button
+  const warningbar = document.getElementById("warning-bar");
+  document
+    .getElementById("warning-close")
+    .addEventListener("click", function () {
+      warningbar.classList.add("hidden");
+    });
+
+  // Show warning message
+  function showWarning(message) {
+    warningbar.classList.remove("hidden");
+    warningbar.querySelector(".message").textContent = message;
+  }
+
+  ///warning bar end
+
+  // Variables
+  const form = document.querySelector("#calculator");
+  const calculateButton = document.querySelector("#submitform");
+  let prevIncome, prevWorkHours, prevSleepHours;
+
+  // Function to calculate results and make POST request
+  function calculate(event) {
+    event.preventDefault();
+
+    // Get current input values
+    const income = parseInt(document.getElementById("income").value);
+    const workhours = parseInt(document.getElementById("workhours").value);
+    const sleephours = parseInt(document.getElementById("sleephours").value);
+
+    // Check if input values have changed
+    if (
+      income === prevIncome &&
+      workhours === prevWorkHours &&
+      sleephours === prevSleepHours
+    ) {
+      return; // If input values haven't changed, do nothing
+    }
+
+    // Update previous input values
+    prevIncome = income;
+    prevWorkHours = workhours;
+    prevSleepHours = sleephours;
+
+    //hide open warning bar
+    warningbar.classList.add("hidden");
+    // Validate input values
+    if (isNaN(income) || isNaN(workhours) || isNaN(sleephours)) {
+      showWarning("All inputs are required and must be numbers");
+      return;
+    } else if (workhours + sleephours * 7 > 168) {
+      showWarning(
+        "Total work hours and sleep hours cannot exceed the total available hours a week (168 hours)"
+      );
+      return;
+    }
+
+    //======================
+    //formulas
+    //======================
+    const personaltimeformula =
+      income / (8760 - workhours * 52 - (sleephours + 2) * 365);
+    const worktimeformula = income / (workhours * 52);
+    const personalhoursformula = 168 - workhours - (sleephours + 2) * 7;
+    //======================
+    //end formulas
+    //======================
+
+    // Calculate results and round to 2 decimal places
+    const personalTime = personaltimeformula.toFixed(2);
+    const workTime = workhours === 0 ? 0 : worktimeformula.toFixed(2);
+    const personalHours = personalhoursformula.toFixed(0);
+
+    // Display results on page
+    document.getElementById("personaltime").textContent = personalTime;
+    document.getElementById("worktime").textContent = workTime;
+    document.getElementById("personalhours").textContent = personalHours;
+
+    // Make POST request to Google Sheets
+    calculateButton.disabled = true;
+    calculateButton.textContent = "Calculating...";
+    let requestBody = new FormData(form);
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbwzCBCNgwQL7XYh4i9qZL6G2lBwRsiO35bZ4mMKYQ0XFvNZXnT5-DitwUgYXUGaLaQ/exec";
+    fetch(scriptURL, { method: "POST", body: requestBody })
+      .then((response) => {
+        console.log("Success!", response);
+      })
+      .catch((error) => {
+        console.log("Error!", error.message);
+      })
+      .finally(() => {
+        calculateButton.disabled = false;
+        calculateButton.textContent = "Recalculate";
+      });
+  }
+
+  //clear all values
+  function clearForm() {
+    warningbar.classList.add("hidden");
+    const ip = document.getElementById("userIP").value;
+
+    // Reset the form
+    document.getElementById("calculator").reset();
+    document.getElementById("field1").value = ip;
+    document.getElementById("personaltime").textContent = "0";
+    document.getElementById("worktime").textContent = "0";
+    document.getElementById("personalhours").textContent = "0";
+    calculateButton.textContent = "Calculate";
+  }
+
+  //run calculator on form submit
+  form.addEventListener("submit", calculate);
+
+  //   ip address
+  async function getUserIpAddress() {
+    const response = await fetch("https://api.ipify.org/?format=json");
+    const data = await response.json();
+    const ipAddress = data.ip;
+    document.getElementById("userIP").value = ipAddress;
+  }
+  getUserIpAddress();
+</script>
