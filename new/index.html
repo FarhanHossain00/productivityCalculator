@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.1/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mitr:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- this is the main container -->
+    <div class="container">
+      <div id="calculator2">
+        <!-- 
+    ==============================================
+    ||                  section 1 
+    ==============================================
+ -->
+        <div class="section-heading">
+          <!-- this is the heading -->
+          <h2>Incorporate Your Time's Value When Weighing Options?</h2>
+        </div>
+
+        <!-- notes -->
+        <!-- notes -->
+        <div class="notes">
+          <p>
+            Input your values for each of the following. All fields are
+            required.
+            <br />
+            No Commas
+            <br />
+            No Fractions
+            <br />
+            Use Decimals (1/2 = 0.5)
+          </p>
+        </div>
+        <!-- this is the form -->
+        <form id="calculatorNew">
+          <!-- 
+    ==============================================
+    ||                  section 2 
+    ==============================================
+ -->
+          <div class="section-heading">
+            <h2>Weighing The Options, Factoring In Your Time</h2>
+            <p>
+              Answer the following questions. Calculations at the bottom are
+              real time, so you can change answers and the tool will recalculate
+              on submit.
+            </p>
+
+            <!-- input fields for section 2 -->
+
+            <!-- times value -->
+            <label for="timesvalue">Your time's value per hour </label>
+            <input type="number" name="times's value" id="timevalue" />
+
+            <!-- ====================== -->
+            <!-- Options -->
+            <!-- ====================== -->
+            <div class="optionscontainer">
+              <!-- option one -->
+
+              <div>
+                <h3 class="optionheading">Option 01</h3>
+                <!-- name -->
+                <label for="option1name">What's Option 1 (O1)?</label>
+                <input type="text" name="option 1 name" id="option1name" />
+
+                <!-- how many hours will take -->
+                <label for="option1time"
+                  >How Many Hours Of Your "Touch Time" Will
+                  <span class="dynamic1">01</span> Take? <br />
+                  <span class="instructions"
+                    >Example: Cleaning the house yourself may take you 4 hours.
+                    That's 4 hours of "touch time" for you. Someone else
+                    cleaning it may still take the same hours, but your "touch
+                    time" is zero. Think only about your time you'll spend
+                    yourself on this.
+                  </span>
+                </label>
+                <input type="number" name="option 1 time" id="option1time" />
+
+                <!-- costs -->
+                <label for="option1cost"
+                  >How Much Will <span class="dynamic1">01</span> Directly Cost
+                  You? <br />
+                  <span class="instructions"
+                    >--Not counting your time. Just the $ you pay for this.
+                  </span>
+                </label>
+                <input type="number" name="option 1 cost" id="option1cost" />
+
+                <!-- joy -->
+                <label for="option1joy"
+                  >Will <span class="dynamic1">01</span> Bring You Joy?
+                </label>
+                <select name="option 1 joy" id="option1joy" data-point="joy">
+                  <!-- <option value="" selected hidden>select one</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+
+                <!-- benefit -->
+
+                <label for="option1benefit"
+                  >Will <span class="dynamic1">01</span> Be Beneficial To Your
+                  Life In Some Way Besides Money or Time? <br />
+                  <span class="instructions"
+                    >--ex: Will you learn something? Improve a relationship?
+                  </span>
+                </label>
+                <select
+                  name="option 1 benefit"
+                  id="option1benefit"
+                  data-point="benefit"
+                >
+                  <!-- <option value="" selected hidden>select one</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+
+                <!-- pain -->
+
+                <label for="option1pain"
+                  >Will <span class="dynamic1">01</span> Be Painful, Emotionally
+                  or Physically?
+                </label>
+                <select
+                  name="option 1 pain"
+                  id="option1pain"
+                  data-point="painful"
+                >
+                  <!-- <option value="" selected hidden>select one</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little" data-point="1.33">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+              </div>
+              <!-- option one end-->
+
+              <!-- option two -->
+              <div>
+                <h3 class="optionheading">Option 02</h3>
+
+                <!-- name -->
+                <label for="option2name">What's Option 2 (O2)?</label>
+                <input type="text" name="option 2 name" id="option2name" />
+
+                <!-- how many hours will take -->
+                <label for="option2time"
+                  >How Many Hours Of Your "Touch Time" Will
+                  <span class="dynamic2">02</span> Take? <br />
+                  <span class="instructions"
+                    >Example: Cleaning the house yourself may take you 4 hours.
+                    That's 4 hours of "touch time" for you. Someone else
+                    cleaning it may still take the same hours, but your "touch
+                    time" is zero. Think only about your time you'll spend
+                    yourself on this.
+                  </span>
+                </label>
+                <input type="number" name="option 2 time" id="option2time" />
+
+                <!-- costs -->
+                <label for="option2cost"
+                  >How Much Will <span class="dynamic2">02</span> Directly Cost
+                  You? <br />
+                  <span class="instructions"
+                    >--Not counting your time. Just the $ you pay for this.
+                  </span>
+                </label>
+                <input type="number" name="option 2 cost" id="option2cost" />
+
+                <!-- joy -->
+
+                <label for="option2joy"
+                  >Will <span class="dynamic2">02</span> Bring You Joy?
+                </label>
+                <select name="option 2 joy" id="option2joy" data-point="joy">
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+
+                <!-- beneift -->
+
+                <label for="option2benefit"
+                  >Will <span class="dynamic2">02</span> Be Beneficial To Your
+                  Life In Some Way Besides Money or Time? <br />
+                  <span class="instructions"
+                    >--ex: Will you learn something? Improve a relationship?
+                  </span>
+                </label>
+                <select
+                  name="option 2 benefit"
+                  id="option2benefit"
+                  data-point="benefit"
+                >
+                  <!-- <option value="" selected hidden>Select One</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+
+                <!-- pain -->
+
+                <label for="option2pain"
+                  >Will <span class="dynamic2">02</span> Be Painful, Emotionally
+                  or Physically?
+                </label>
+                <select
+                  name="option 2 pain"
+                  id="option2pain"
+                  data-point="painful"
+                >
+                  <!-- <option value="" selected hidden>select one</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+              </div>
+              <!-- option two end -->
+            </div>
+            <!-- ====================== -->
+            <!-- Options end -->
+            <!-- ====================== -->
+          </div>
+          <!-- 
+    ==============================================
+    ||                  section 2 end
+    ==============================================
+ -->
+
+          <!-- form closing -->
+          <!-- form closing -->
+          <!-- form closing -->
+          <!-- ip address -->
+          <input
+            type="text"
+            name="IP address"
+            id="userIP2"
+            style="display: none"
+          />
+
+          <div class="form-buttons">
+            <button type="submit" onclick="calculate2(event)" id="submitform2">
+              Calculate
+            </button>
+            <button type="button" onclick="clearForm2()" id="resetbtn2">
+              Clear</button
+            ><br /><br />
+          </div>
+        </form>
+
+        <!-- result shows here -->
+        <!-- times value -->
+        <div class="timesvalue">
+          <div class="cards">
+            <div class="op1 card">
+              <div class="title">O1-Your Time's Value+Costs</div>
+              <div class="result-value">$<span id="op1valuecost">0</span></div>
+              <div class="title">Preference Toward O1:</div>
+              <div class="result-value"><span id="op1prefer">0</span>%</div>
+            </div>
+
+            <div class="op2 card">
+              <div class="title">O2-Your Time's Value+Costs</div>
+              <div class="result-value">$<span id="op2valuecost">0</span></div>
+              <div class="title">Preference Toward O2:</div>
+              <div class="result-value"><span id="op2prefer">0</span>%</div>
+            </div>
+          </div>
+          <!-- leaning -->
+          <div class="meter-container">
+            <div id="chart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      //points (you can set from here)
+      const valueOfPoints = {
+        joy: {
+          "not at all": 1,
+          "a little": 0.8,
+          some: 0.6,
+          "a lot": 0.4
+        },
+        benefit: {
+          "not at all": 1,
+          "a little": 0.8,
+          some: 0.6,
+          "a lot": 0.4
+        },
+        painful: {
+          "not at all": 1,
+          "a little": 1.33,
+          some: 1.67,
+          "a lot": 2
+        }
+      };
+
+      // leaning
+      var dom = document.getElementById("chart");
+      var myChart = echarts.init(dom);
+      var app = {};
+      option = null;
+
+      option = {
+        title: {
+          text: "Preference",
+          left: "center"
+        },
+        series: [
+          {
+            type: "gauge",
+            startAngle: 180,
+            endAngle: 0,
+            progress: {
+              show: true,
+              width: 15,
+              roundCap: true
+            },
+            axisLine: {
+              roundCap: true,
+              lineStyle: {
+                width: 15,
+                color: [[1, "#3dead647"]],
+
+                backgroundColor: "transparent"
+              }
+            },
+            axisTick: {
+              show: true
+            },
+            splitLine: {
+              length: 15,
+              lineStyle: {
+                width: 0,
+                color: "#999"
+              }
+            },
+            axisLabel: {
+              show: false,
+              distance: 15,
+              color: "#999",
+              fontSize: 14
+            },
+            pointer: {
+              icon: "path://M2090.36389,615.30999 L2090.36389,615.30999 C2091.48372,615.30999 2092.40383,616.194028 2092.44859,617.312956 L2096.90698,728.755929 C2097.05155,732.369577 2094.2393,735.416212 2090.62566,735.56078 C2090.53845,735.564269 2090.45117,735.566014 2090.36389,735.566014 L2090.36389,735.566014 C2086.74736,735.566014 2083.81557,732.63423 2083.81557,729.017692 C2083.81557,728.930412 2083.81732,728.84314 2083.82081,728.755929 L2088.2792,617.312956 C2088.32396,616.194028 2089.24407,615.30999 2090.36389,615.30999 Z",
+              length: "85%",
+              width: 6,
+              offsetCenter: [0, "0"]
+            },
+            anchor: {
+              show: true,
+              showAbove: true,
+              size: 10,
+              itemStyle: {
+                borderWidth: 3
+              }
+            },
+            detail: {
+              show: false,
+              valueAnimation: true,
+              fontSize: 30,
+              offsetCenter: [0, "20%"]
+            },
+            data: [
+              {
+                value: 50
+              }
+            ]
+          }
+        ]
+      };
+
+      function updateChart(value) {
+        option.series[0].data[0].value = value;
+
+        if (option && typeof option === "object") {
+          myChart.setOption(option, true);
+        }
+      }
+      updateChart(50);
+      //====================================================
+      // Add event listener to close button
+
+      // Show warning message
+      function showWarning(message) {
+        Swal.fire({
+          icon: "error",
+          title: "Fill out the form correctly",
+          text: message
+        });
+      }
+
+      // leaning function
+      const updateLeaning = (op1, op2) => {
+        let newValue = 50;
+        if (op1 > op2) {
+          newValue = newValue - op1 / 2;
+        } else {
+          newValue = newValue + op2 / 2;
+        }
+        updateChart(newValue);
+      };
+
+      // Variables
+      const formNew = document.querySelector("#calculatorNew");
+      const calculateButton2 = document.querySelector("#submitform2");
+
+      let prevTimeValue,
+        prevOption1Name,
+        prevOption1Cost,
+        prevOption1Benefit,
+        prevOption1Joy,
+        prevOption1Pain,
+        prevOption1Time,
+        prevOption2Name,
+        prevOption2Cost,
+        prevOption2Benefit,
+        prevOption2Joy,
+        prevOption2Pain,
+        prevOption2Time;
+
+      function getDataPointFromSelect(selectId) {
+        const selectElement = document.getElementById(selectId);
+        const pointName = selectElement
+          .getAttribute("data-point")
+          .toLowerCase();
+        const selectedOption = selectElement.value.toLowerCase();
+        return valueOfPoints[pointName][selectedOption] || null;
+      }
+      // Function to calculate results and make POST request
+      function calculate2(event) {
+        event.preventDefault();
+
+        // Get current input values
+
+        // section 2
+        const timeValue = parseFloat(
+          document.getElementById("timevalue").value
+        );
+        const option_1_name = document.getElementById("option1name").value;
+        const option_2_name = document.getElementById("option2name").value;
+        const option_1_time = parseFloat(
+          document.getElementById("option1time").value
+        );
+        const option_2_time = parseFloat(
+          document.getElementById("option2time").value
+        );
+        const option_1_cost = parseFloat(
+          document.getElementById("option1cost").value
+        );
+        const option_2_cost = parseFloat(
+          document.getElementById("option2cost").value
+        );
+        const option_1_joy = parseFloat(getDataPointFromSelect("option1joy"));
+        const option_2_joy = parseFloat(getDataPointFromSelect("option2joy"));
+        const option_1_benefit = parseFloat(
+          getDataPointFromSelect("option1benefit")
+        );
+        const option_2_benefit = parseFloat(
+          getDataPointFromSelect("option2benefit")
+        );
+        const option_1_pain = parseFloat(getDataPointFromSelect("option1pain"));
+        const option_2_pain = parseFloat(getDataPointFromSelect("option2pain"));
+
+        // Check if input values have changed
+        if (
+          timeValue === prevTimeValue &&
+          option_1_name === prevOption1Name &&
+          option_2_name === prevOption2Name &&
+          option_1_time === prevOption1Time &&
+          option_2_time === prevOption2Time &&
+          option_1_cost === prevOption1Cost &&
+          option_2_cost === prevOption2Cost &&
+          option_1_joy === prevOption1Joy &&
+          option_2_joy === prevOption2Joy &&
+          option_1_benefit === prevOption1Benefit &&
+          option_2_benefit === prevOption2Benefit &&
+          option_1_pain === prevOption1Pain &&
+          option_2_pain === prevOption2Pain
+        ) {
+          return; // If input values haven't changed, do nothing
+        }
+        // Update previous input values
+        prevTimeValue = timeValue;
+        prevOption1Name = option_1_name;
+        prevOption2Name = option_2_name;
+        prevOption1Time = option_1_time;
+        prevOption2Time = option_2_time;
+        prevOption1Cost = option_1_cost;
+        prevOption2Cost = option_2_cost;
+        prevOption1Joy = option_1_joy;
+        prevOption2Joy = option_2_joy;
+        prevOption1Benefit = option_1_benefit;
+        prevOption2Benefit = option_2_benefit;
+        prevOption1Pain = option_1_pain;
+        prevOption2Pain = option_2_pain;
+
+        // Validate input values
+        if (
+          isNaN(timeValue) ||
+          isNaN(option_1_cost) ||
+          isNaN(option_1_time) ||
+          isNaN(option_1_joy) ||
+          isNaN(option_1_pain) ||
+          isNaN(option_1_benefit) ||
+          isNaN(option_2_cost) ||
+          isNaN(option_2_time) ||
+          isNaN(option_2_joy) ||
+          isNaN(option_2_pain) ||
+          isNaN(option_2_benefit) ||
+          option_1_name === "" ||
+          option_2_name === ""
+        ) {
+          showWarning("All inputs are required");
+          return;
+        }
+
+        //======================
+        //formulas for section 2
+        //======================
+        const option1_Cost_Formula = timeValue * option_1_time + option_1_cost;
+        const option2_Cost_Formula = timeValue * option_2_time + option_2_cost;
+
+        //   calculate
+        const op1cost = Math.round(option1_Cost_Formula * 100) / 100;
+        const op2cost = Math.round(option2_Cost_Formula * 100) / 100;
+
+        //   preference
+        // option 1
+        const option1_Preference_Formula =
+          ((op2cost * option_2_joy * option_2_benefit * option_2_pain) /
+            (op1cost * option_1_joy * option_1_benefit * option_1_pain +
+              op2cost * option_2_joy * option_2_benefit * option_2_pain)) *
+          100;
+
+        // option 2
+        const option2_Preference_Formula =
+          ((op1cost * option_1_joy * option_1_benefit * option_1_pain) /
+            (op1cost * option_1_joy * option_1_benefit * option_1_pain +
+              op2cost * option_2_joy * option_2_benefit * option_2_pain)) *
+          100;
+
+        // calculate
+        const op1preference = Math.round(option1_Preference_Formula);
+        const op2preference = Math.round(option2_Preference_Formula);
+
+        // update the meter
+        updateLeaning(op1preference, op2preference);
+        //======================
+        //formulas for section 2 end
+        //======================
+
+        // Display results on page
+        // section 2
+        document.getElementById("op1valuecost").textContent = op1cost;
+        document.getElementById("op1prefer").textContent = op1preference;
+        document.getElementById("op2valuecost").textContent = op2cost;
+        document.getElementById("op2prefer").textContent = op2preference;
+
+        // Make POST request to Google Sheets
+        calculateButton2.disabled = true;
+        calculateButton2.textContent = "Calculating...";
+        let requestBody = new FormData(formNew);
+        const scriptURL =
+          "https://script.google.com/macros/s/AKfycbwwfeQTiRSEwsg-_Q2wxbcVpglhaNPlXK5N1pDtkVsbriWhXNsN9PIQFdGc-sNe60t0eg/exec";
+        fetch(scriptURL, { method: "POST", body: requestBody })
+          .then((response) => {
+            console.log("Success!", response);
+          })
+          .catch((error) => {
+            console.log("Error!", error.message);
+          })
+          .finally(() => {
+            calculateButton2.disabled = false;
+            calculateButton2.textContent = "Recalculate";
+          });
+      }
+
+      //clear all values
+      function clearForm2() {
+        document.getElementById("calculatorNew").reset();
+        document.getElementById("op1valuecost").textContent = "0";
+        document.getElementById("op1prefer").textContent = "0";
+        document.getElementById("op2valuecost").textContent = "0";
+        document.getElementById("op2prefer").textContent = "0";
+        calculateButton2.textContent = "Calculate";
+      }
+
+      //run calculator on form submit
+      formNew.addEventListener("submit", calculate2);
+
+      // ip address
+      async function getUserIpAddress2() {
+        const response = await fetch("https://api.ipify.org/?format=json");
+        const data = await response.json();
+        const ipAddress = data.ip;
+        console.log("ip address", ipAddress);
+        document.getElementById("userIP2").value = ipAddress;
+      }
+      getUserIpAddress2();
+
+      // dynamic name
+      const op1name = document.getElementById("option1name");
+      const op2name = document.getElementById("option2name");
+      const dynamic1 = document.querySelectorAll(".dynamic1");
+      const dynamic2 = document.querySelectorAll(".dynamic2");
+      const CHAR_LIMIT = 30; // set the character limit to 20
+
+      op1name.addEventListener("input", function () {
+        let value = op1name.value;
+        if (value.length > CHAR_LIMIT) {
+          value = value.slice(0, CHAR_LIMIT); // truncate the value to the character limit
+        }
+        op1name.value = value; // update the input field value
+        dynamic1.forEach(function (element) {
+          element.innerText = value;
+        });
+      });
+
+      op2name.addEventListener("input", function () {
+        let value = op2name.value;
+        if (value.length > CHAR_LIMIT) {
+          value = value.slice(0, CHAR_LIMIT); // truncate the value to the character limit
+        }
+        op2name.value = value; // update the input field value
+        dynamic2.forEach(function (element) {
+          element.innerText = value;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -18,322 +18,279 @@
   <body>
     <!-- this is the main container -->
     <div class="container">
-      <!-- 
+      <div id="calculator2">
+        <!-- 
     ==============================================
     ||                  section 1 
     ==============================================
  -->
-      <div class="section-heading">
-        <!-- this is the heading -->
-        <h2>Incorporate Your Time's Value When Weighing Options?</h2>
-        <h2>Section 1: Calculate Your Time's Value</h2>
-      </div>
+        <div class="section-heading">
+          <!-- this is the heading -->
+          <h2>Incorporate Your Time's Value When Weighing Options?</h2>
+          <h2>Section 1: Calculate Your Time's Value</h2>
+        </div>
 
-      <!-- notes -->
-      <p>
-        Input your values for each of the following. All fields are required.
-        <br />
-        No Commas
-        <br />
-        No Fractions
-        <br />
-        Use Decimals (1/2 = 0.5)
-      </p>
-      <!-- this is the form -->
-      <form id="calculator">
-        <label for="income"
-          >Total Annual Income: <br />
-          <span>Before Taxes</span></label
-        >
-        <input type="number" id="income" name="income" required /><br /><br />
-
-        <label for="workhours"
-          >Average Total Work Hours PER WEEK: <br />
-          <span>Include commute time.</span></label
-        >
-        <input
-          type="number"
-          id="workhours"
-          name="workhours"
-          required
-        /><br /><br />
-
-        <label for="sleephours">Average Sleep Hours PER NIGHT:</label>
-        <input
-          type="number"
-          id="sleephours"
-          name="sleephours"
-          required
-        /><br /><br />
-
-        <!-- 
+        <!-- notes -->
+        <p>
+          Input your values for each of the following. All fields are required.
+          <br />
+          No Commas
+          <br />
+          No Fractions
+          <br />
+          Use Decimals (1/2 = 0.5)
+        </p>
+        <!-- this is the form -->
+        <form id="calculatorNew">
+          <!-- 
     ==============================================
     ||                  section 2 
     ==============================================
  -->
-        <div class="section-heading">
-          <h2>Section 2: Weighing The Options, Factoring In Your Time</h2>
-          <p>
-            Answer the following questions. Calculations at the bottom are real
-            time, so you can change answers and the tool will recalculate
-            immediately.
-          </p>
+          <div class="section-heading">
+            <h2>Weighing The Options, Factoring In Your Time</h2>
+            <p>
+              Answer the following questions. Calculations at the bottom are
+              real time, so you can change answers and the tool will recalculate
+              on submit.
+            </p>
 
-          <!-- input fields for section 2 -->
-          <!-- work or outside? -->
-          <label for="workOrOutside"> </label>
-          <select name="work or outside" id="workOrOutside">
-            <option value="" selected hidden>select the item...</option>
-            <option value="work">For Work</option>
-            <option value="outside">Outside of Work</option>
-          </select>
+            <!-- input fields for section 2 -->
 
-          <!-- ====================== -->
-          <!-- Options -->
-          <!-- ====================== -->
-          <div class="optionscontainer">
-            <!-- option one -->
+            <!-- times value -->
+            <label for="timesvalue">Your time's value per hour </label>
+            <input type="number" name="times's value" id="timevalue" />
 
-            <div>
-              <h3 class="optionheading">Option 01</h3>
-              <!-- name -->
-              <label for="option1name">What's Option 1 (O1)?</label>
-              <input type="text" name="option 1 name" id="option1name" />
+            <!-- ====================== -->
+            <!-- Options -->
+            <!-- ====================== -->
+            <div class="optionscontainer">
+              <!-- option one -->
 
-              <!-- how many hours will take -->
-              <label for="option1time"
-                >How Many Hours Of Your "Touch Time" Will O1 Take? <br />
-                <span
-                  >Example: Cleaning the house yourself may take you 4 hours.
-                  That's 4 hours of "touch time" for you. Someone else cleaning
-                  it may still take the same hours, but your "touch time" is
-                  zero. Think only about your time you'll spend yourself on
-                  this.
-                </span>
-              </label>
-              <input type="number" name="option 1 time" id="option1time" />
+              <div>
+                <h3 class="optionheading">Option 01</h3>
+                <!-- name -->
+                <label for="option1name">What's Option 1 (O1)?</label>
+                <input type="text" name="option 1 name" id="option1name" />
 
-              <!-- costs -->
-              <label for="option1cost"
-                >How Much Will O1 Directly Cost You? <br />
-                <span
-                  >--Not counting your time. Just the $ you pay for this.
-                </span>
-              </label>
-              <input type="number" name="option 1 cost" id="option1cost" />
+                <!-- how many hours will take -->
+                <label for="option1time"
+                  >How Many Hours Of Your "Touch Time" Will
+                  <span class="dynamic1">01</span> Take? <br />
+                  <span class="instructions"
+                    >Example: Cleaning the house yourself may take you 4 hours.
+                    That's 4 hours of "touch time" for you. Someone else
+                    cleaning it may still take the same hours, but your "touch
+                    time" is zero. Think only about your time you'll spend
+                    yourself on this.
+                  </span>
+                </label>
+                <input type="number" name="option 1 time" id="option1time" />
 
-              <!-- joy -->
-              <label for="option1joy">Will Doing O1 Bring You Joy? </label>
-              <select name="option 1 joy" id="option1joy" data-point="joy">
-                <option value="" selected hidden>select one</option>
-                <option value="not at all">Not at all</option>
-                <option value="A little">Little</option>
-                <option value="some">Some</option>
-                <option value="a lot">A lot</option>
-              </select>
+                <!-- costs -->
+                <label for="option1cost"
+                  >How Much Will <span class="dynamic1">01</span> Directly Cost
+                  You? <br />
+                  <span class="instructions"
+                    >--Not counting your time. Just the $ you pay for this.
+                  </span>
+                </label>
+                <input type="number" name="option 1 cost" id="option1cost" />
 
-              <!-- benefit -->
+                <!-- joy -->
+                <label for="option1joy"
+                  >Will <span class="dynamic1">01</span> Bring You Joy?
+                </label>
+                <select name="option 1 joy" id="option1joy" data-point="joy">
+                  <!-- <option value="" selected hidden>select one</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
 
-              <label for="option1benefit"
-                >Will O1 Be Beneficial To Your Life In Some Way Besides Money or
-                Time? <br />
-                <span
-                  >--ex: Will you learn something? Improve a relationship?
-                </span>
-              </label>
-              <select
-                name="option 1 benefit"
-                id="option1benefit"
-                data-point="benefit"
-              >
-                <option value="" selected hidden>select one</option>
-                <option value="not at all">Not at all</option>
-                <option value="A little">Little</option>
-                <option value="some">Some</option>
-                <option value="a lot">A lot</option>
-              </select>
+                <!-- benefit -->
 
-              <!-- pain -->
+                <label for="option1benefit"
+                  >Will <span class="dynamic1">01</span> Be Beneficial To Your
+                  Life In Some Way Besides Money or Time? <br />
+                  <span class="instructions"
+                    >--ex: Will you learn something? Improve a relationship?
+                  </span>
+                </label>
+                <select
+                  name="option 1 benefit"
+                  id="option1benefit"
+                  data-point="benefit"
+                >
+                  <!-- <option value="" selected hidden>select one</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
 
-              <label for="option1pain"
-                >Will Doing O1 Be Painful, Emotionally or Physically?
-              </label>
-              <select name="option 1 pain" id="option1pain" data-point="painful">
-                <option value="" selected hidden>select one</option>
-                <option value="not at all">Not at all</option>
-                <option value="A little" data-point="1.33">Little</option>
-                <option value="some">Some</option>
-                <option value="a lot">A lot</option>
-              </select>
+                <!-- pain -->
+
+                <label for="option1pain"
+                  >Will <span class="dynamic1">01</span> Be Painful, Emotionally
+                  or Physically?
+                </label>
+                <select
+                  name="option 1 pain"
+                  id="option1pain"
+                  data-point="painful"
+                >
+                  <!-- <option value="" selected hidden>select one</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little" data-point="1.33">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+              </div>
+              <!-- option one end-->
+
+              <!-- option two -->
+              <div>
+                <h3 class="optionheading">Option 02</h3>
+
+                <!-- name -->
+                <label for="option2name">What's Option 2 (O2)?</label>
+                <input type="text" name="option 2 name" id="option2name" />
+
+                <!-- how many hours will take -->
+                <label for="option2time"
+                  >How Many Hours Of Your "Touch Time" Will
+                  <span class="dynamic2">02</span> Take? <br />
+                  <span class="instructions"
+                    >Example: Cleaning the house yourself may take you 4 hours.
+                    That's 4 hours of "touch time" for you. Someone else
+                    cleaning it may still take the same hours, but your "touch
+                    time" is zero. Think only about your time you'll spend
+                    yourself on this.
+                  </span>
+                </label>
+                <input type="number" name="option 2 time" id="option2time" />
+
+                <!-- costs -->
+                <label for="option2cost"
+                  >How Much Will <span class="dynamic2">02</span> Directly Cost
+                  You? <br />
+                  <span class="instructions"
+                    >--Not counting your time. Just the $ you pay for this.
+                  </span>
+                </label>
+                <input type="number" name="option 2 cost" id="option2cost" />
+
+                <!-- joy -->
+
+                <label for="option2joy"
+                  >Will <span class="dynamic2">02</span> Bring You Joy?
+                </label>
+                <select name="option 2 joy" id="option2joy" data-point="joy">
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+
+                <!-- beneift -->
+
+                <label for="option2benefit"
+                  >Will <span class="dynamic2">02</span> Be Beneficial To Your
+                  Life In Some Way Besides Money or Time? <br />
+                  <span class="instructions"
+                    >--ex: Will you learn something? Improve a relationship?
+                  </span>
+                </label>
+                <select
+                  name="option 2 benefit"
+                  id="option2benefit"
+                  data-point="benefit"
+                >
+                  <!-- <option value="" selected hidden>Select One</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+
+                <!-- pain -->
+
+                <label for="option2pain"
+                  >Will <span class="dynamic2">02</span> Be Painful, Emotionally
+                  or Physically?
+                </label>
+                <select
+                  name="option 2 pain"
+                  id="option2pain"
+                  data-point="painful"
+                >
+                  <!-- <option value="" selected hidden>select one</option> -->
+                  <option value="not at all" selected>Not at all</option>
+                  <option value="A little">Little</option>
+                  <option value="some">Some</option>
+                  <option value="a lot">A lot</option>
+                </select>
+              </div>
+              <!-- option two end -->
             </div>
-            <!-- option one end-->
-
-            <!-- option two -->
-            <div>
-              <h3 class="optionheading">Option 02</h3>
-
-              <!-- name -->
-              <label for="option2name">What's Option 2 (O2)?</label>
-              <input type="text" name="option 2 name" id="option2name" />
-
-              <!-- how many hours will take -->
-              <label for="option2time"
-                >How Many Hours Of Your "Touch Time" Will O2 Take? <br />
-                <span
-                  >Example: Cleaning the house yourself may take you 4 hours.
-                  That's 4 hours of "touch time" for you. Someone else cleaning
-                  it may still take the same hours, but your "touch time" is
-                  zero. Think only about your time you'll spend yourself on
-                  this.
-                </span>
-              </label>
-              <input type="number" name="option 2 time" id="option2time" />
-
-              <!-- costs -->
-              <label for="option2cost"
-                >How Much Will O2 Directly Cost You? <br />
-                <span
-                  >--Not counting your time. Just the $ you pay for this.
-                </span>
-              </label>
-              <input type="number" name="option 2 cost" id="option2cost" />
-
-              <!-- joy -->
-
-              <label for="option2joy">Will Doing O2 Bring You Joy? </label>
-              <select name="option 2 joy" id="option2joy" data-point="joy">
-                <option value="" selected hidden>Not at all</option>
-                <option value="not at all">Not at all</option>
-                <option value="A little">Little</option>
-                <option value="some">Some</option>
-                <option value="a lot">A lot</option>
-              </select>
-
-              <!-- beneift -->
-
-              <label for="option2benefit"
-                >Will O2 Be Beneficial To Your Life In Some Way Besides Money or
-                Time? <br />
-                <span
-                  >--ex: Will you learn something? Improve a relationship?
-                </span>
-              </label>
-              <select
-                name="option 2 benefit"
-                id="option2benefit"
-                data-point="benefit"
-              >
-                <option value="" selected hidden>Select One</option>
-                <option value="not at all">Not at all</option>
-                <option value="A little">Little</option>
-                <option value="some">Some</option>
-                <option value="a lot">A lot</option>
-              </select>
-
-              <!-- pain -->
-
-              <label for="option2pain"
-                >Will Doing O2 Be Painful, Emotionally or Physically?
-              </label>
-              <select
-                name="option 2 pain"
-                id="option2pain"
-                data-point="painful"
-              >
-                <option value="" selected hidden>select one</option>
-                <option value="not at all">Not at all</option>
-                <option value="A little">Little</option>
-                <option value="some">Some</option>
-                <option value="a lot">A lot</option>
-              </select>
-            </div>
-            <!-- option two end -->
+            <!-- ====================== -->
+            <!-- Options end -->
+            <!-- ====================== -->
           </div>
-          <!-- ====================== -->
-          <!-- Options end -->
-          <!-- ====================== -->
-        </div>
-        <!-- 
+          <!-- 
     ==============================================
     ||                  section 2 end
     ==============================================
  -->
 
-        <!-- form closing -->
-        <!-- form closing -->
-        <!-- form closing -->
-        <div class="form-buttons">
-          <button type="submit" onclick="calculate(event)" id="submitform">
-            Calculate
-          </button>
-          <button type="button" onclick="clearForm()" id="resetbtn">
-            Clear</button
-          ><br /><br />
-        </div>
-      </form>
+          <!-- form closing -->
+          <!-- form closing -->
+          <!-- form closing -->
+          <!-- ip address -->
+          <input
+            type="text"
+            name="IP address"
+            id="userIP2"
+            style="display: none"
+          />
 
-      <!-- result shows here -->
-      <!-- times value -->
-      <div class="timesvalue">
-        <div class="cards">
-          <div class="op1 card">
-            <div class="title">O1-Your Time's Value+Costs</div>
-            <div class="result-value">$<span id="op1valuecost">0</span></div>
-            <div class="title">Preference Toward O1:</div>
-            <div class="result-value"><span id="op1prefer">0</span>%</div>
+          <div class="form-buttons">
+            <button type="submit" onclick="calculate(event)" id="submitform">
+              Calculate
+            </button>
+            <button type="button" onclick="clearForm()" id="resetbtn">
+              Clear</button
+            ><br /><br />
           </div>
+        </form>
 
-          <div class="op2 card">
-            <div class="title">O2-Your Time's Value+Costs</div>
-            <div class="result-value">$<span id="op2valuecost">0</span></div>
-            <div class="title">Preference Toward O2:</div>
-            <div class="result-value"><span id="op2prefer">0</span>%</div>
+        <!-- result shows here -->
+        <!-- times value -->
+        <div class="timesvalue">
+          <div class="cards">
+            <div class="op1 card">
+              <div class="title">O1-Your Time's Value+Costs</div>
+              <div class="result-value">$<span id="op1valuecost">0</span></div>
+              <div class="title">Preference Toward O1:</div>
+              <div class="result-value"><span id="op1prefer">0</span>%</div>
+            </div>
+
+            <div class="op2 card">
+              <div class="title">O2-Your Time's Value+Costs</div>
+              <div class="result-value">$<span id="op2valuecost">0</span></div>
+              <div class="title">Preference Toward O2:</div>
+              <div class="result-value"><span id="op2prefer">0</span>%</div>
+            </div>
           </div>
-        </div>
-        <!-- leaning -->
-        <div class="meter-container">
-          <div id="chart"></div>
-        </div>
-      </div>
-      <!-- <div class="results">
-        <h2>Result</h2>
-        <label for="personaltime">Personal Time:</label>
-        <span id="personaltime">0</span><span> $/Hour</span><br /><br />
-
-        <label for="worktime">Work Time:</label>
-        <span id="worktime">0</span><span> $/Hour</span><br /><br />
-
-        <label for="personalhours">Hours of Personal Time Each Week:</label>
-        <span id="personalhours">0</span><span> Hours</span><br /><br />
-      </div> -->
-      <div class="result-container">
-        <div class="heading">
-          <h2>Result</h2>
-        </div>
-
-        <div class="results">
-          <div class="result-box">
-            <h2>Personal Time</h2>
-            <span class="result-value"
-              >$<span id="personaltime">0</span>/Hour</span
-            >
-          </div>
-
-          <div class="result-box">
-            <h2>Work Time</h2>
-            <span class="result-value">$<span id="worktime">0</span>/Hour</span>
-          </div>
-
-          <div class="result-box">
-            <h2>Hours of Personal Time Each Week</h2>
-            <span class="result-value"
-              ><span id="personalhours">0</span> Hours</span
-            >
+          <!-- leaning -->
+          <div class="meter-container">
+            <div id="chart"></div>
           </div>
         </div>
       </div>
     </div>
     <script src="calculator.js"></script>
-    <script src="meter.js"></script>
   </body>
 </html>

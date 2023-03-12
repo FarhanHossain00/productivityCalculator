@@ -125,15 +125,12 @@ const updateLeaning = (op1, op2) => {
   }
   updateChart(newValue);
 };
-///warning bar end
 
 // Variables
-const form = document.querySelector("#calculator");
+const form = document.querySelector("#calculatorNew");
 const calculateButton = document.querySelector("#submitform");
 
-let prevIncome,
-  prevWorkHours,
-  prevSleepHours,
+let prevTimeValue,
   prevOption1Name,
   prevOption1Cost,
   prevOption1Benefit,
@@ -163,18 +160,11 @@ function calculate(event) {
   event.preventDefault();
 
   // Get current input values
-  const income = parseFloat(document.getElementById("income").value);
-  const workhours = parseFloat(document.getElementById("workhours").value);
-  const sleephours = parseFloat(document.getElementById("sleephours").value);
 
   // section 2
-  const scope = document.getElementById("workOrOutside").value;
-  const option_1_name = parseFloat(
-    document.getElementById("option1name").value
-  );
-  const option_2_name = parseFloat(
-    document.getElementById("option2name").value
-  );
+  const timeValue = parseFloat(document.getElementById("timevalue").value);
+  const option_1_name = document.getElementById("option1name").value;
+  const option_2_name = document.getElementById("option2name").value;
   const option_1_time = parseFloat(
     document.getElementById("option1time").value
   );
@@ -197,9 +187,7 @@ function calculate(event) {
   console.log(option_1_benefit, option_1_cost, option_1_time);
   // Check if input values have changed
   if (
-    income === prevIncome &&
-    workhours === prevWorkHours &&
-    sleephours === prevSleepHours &&
+    timesValue === prevTimeValue &&
     option_1_name === prevOption1Name &&
     option_2_name === prevOption2Name &&
     option_1_time === prevOption1Time &&
@@ -215,11 +203,8 @@ function calculate(event) {
   ) {
     return; // If input values haven't changed, do nothing
   }
-
   // Update previous input values
-  prevIncome = income;
-  prevWorkHours = workhours;
-  prevSleepHours = sleephours;
+  prevTimeValue = timeValue;
   prevOption1Name = option_1_name;
   prevOption2Name = option_2_name;
   prevOption1Time = option_1_time;
@@ -233,13 +218,9 @@ function calculate(event) {
   prevOption1Pain = option_1_pain;
   prevOption2Pain = option_2_pain;
 
-  //hide open warning bar
-
   // Validate input values
   if (
-    isNaN(income) ||
-    isNaN(workhours) ||
-    isNaN(sleephours) ||
+    isNaN(timeValue) ||
     isNaN(option_1_cost) ||
     isNaN(option_1_time) ||
     isNaN(option_1_joy) ||
@@ -251,56 +232,31 @@ function calculate(event) {
     isNaN(option_2_pain) ||
     isNaN(option_2_benefit) ||
     option_1_name === "" ||
-    option_2_name === "" ||
-    scope === ""
+    option_2_name === ""
   ) {
     showWarning("All inputs are required");
-    return;
-  } else if (workhours + sleephours * 7 > 168) {
-    showWarning(
-      "Total work hours and sleep hours cannot exceed the total available hours a week (168 hours)"
-    );
     return;
   }
 
   //======================
-  //formulas for section 1
-  //======================
-  const personaltimeformula =
-    income / (8760 - workhours * 52 - (sleephours + 2) * 365);
-  const worktimeformula = income / (workhours * 52);
-  const personalhoursformula = 168 - workhours - (sleephours + 2) * 7;
-
-  //======================
-  //end formulas
-  //======================
-
-  // Calculate results and round to 2 decimal places
-  const personalTime = Math.round(personaltimeformula * 100) / 100;
-  const workTime =
-    workhours === 0 ? 0 : Math.round(worktimeformula * 100) / 100;
-  const personalHours = Math.round(personalhoursformula * 100) / 100;
-
-  //======================
   //formulas for section 2
   //======================
-  // check work or outside of work
-  console.log(scope);
-  const workOrOutside = scope === "work" ? workTime : personalTime;
-  // cost
-  const option1_Cost_Formula = workOrOutside * option_1_time + option_1_cost;
-  const option2_Cost_Formula = workOrOutside * option_2_time + option_2_cost;
+  const option1_Cost_Formula = timeValue * option_1_time + option_1_cost;
+  const option2_Cost_Formula = timeValue * option_2_time + option_2_cost;
 
   //   calculate
   const op1cost = Math.round(option1_Cost_Formula * 100) / 100;
   const op2cost = Math.round(option2_Cost_Formula * 100) / 100;
+
   //   preference
+  // option 1
   const option1_Preference_Formula =
     ((op2cost * option_2_joy * option_2_benefit * option_2_pain) /
       (op1cost * option_1_joy * option_1_benefit * option_1_pain +
         op2cost * option_2_joy * option_2_benefit * option_2_pain)) *
     100;
 
+  // option 2
   const option2_Preference_Formula =
     ((op1cost * option_1_joy * option_1_benefit * option_1_pain) /
       (op1cost * option_1_joy * option_1_benefit * option_1_pain +
@@ -318,9 +274,6 @@ function calculate(event) {
   //======================
 
   // Display results on page
-  document.getElementById("personaltime").textContent = personalTime;
-  document.getElementById("worktime").textContent = workTime;
-  document.getElementById("personalhours").textContent = personalHours;
   // section 2
   document.getElementById("op1valuecost").textContent = op1cost;
   document.getElementById("op1prefer").textContent = op1preference;
@@ -348,13 +301,51 @@ function calculate(event) {
 
 //clear all values
 function clearForm() {
-  warningbar.classList.add("hidden");
-  document.getElementById("calculator").reset();
-  document.getElementById("personaltime").textContent = "0";
-  document.getElementById("worktime").textContent = "0";
-  document.getElementById("personalhours").textContent = "0";
+  document.getElementById("calculatorNew").reset();
+  document.getElementById("op1valuecost").textContent = "0";
+  document.getElementById("op1prefer").textContent = "0";
+  document.getElementById("op2valuecost").textContent = "0";
+  document.getElementById("op2prefer").textContent = "0";
   calculateButton.textContent = "Calculate";
 }
 
 //run calculator on form submit
 form.addEventListener("submit", calculate);
+
+// ip address
+async function getUserIpAddress2() {
+  const response = await fetch("https://api.ipify.org/?format=json");
+  const data = await response.json();
+  const ipAddress = data.ip;
+  document.getElementById("userIP2").value = ipAddress;
+}
+getUserIpAddress2();
+
+// dynamic name
+const op1name = document.getElementById("option1name");
+const op2name = document.getElementById("option2name");
+const dynamic1 = document.querySelectorAll(".dynamic1");
+const dynamic2 = document.querySelectorAll(".dynamic2");
+const CHAR_LIMIT = 30; // set the character limit to 20
+
+op1name.addEventListener("input", function () {
+  let value = op1name.value;
+  if (value.length > CHAR_LIMIT) {
+    value = value.slice(0, CHAR_LIMIT); // truncate the value to the character limit
+  }
+  op1name.value = value; // update the input field value
+  dynamic1.forEach(function (element) {
+    element.innerText = value;
+  });
+});
+
+op2name.addEventListener("input", function () {
+  let value = op2name.value;
+  if (value.length > CHAR_LIMIT) {
+    value = value.slice(0, CHAR_LIMIT); // truncate the value to the character limit
+  }
+  op2name.value = value; // update the input field value
+  dynamic2.forEach(function (element) {
+    element.innerText = value;
+  });
+});
